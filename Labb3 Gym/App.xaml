@@ -1,0 +1,130 @@
+﻿<Application x:Class="Labb3_Gym.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Viewmodels="clr-namespace:Labb3_Gym.ViewModels"
+             xmlns:models="clr-namespace:Labb3_Gym.Models"
+             xmlns:Views="clr-namespace:Labb3_Gym.Views"
+             StartupUri="MainWindow.xaml">
+            
+    <Application.Resources>
+
+       
+
+        <Style TargetType="ScrollBar" x:Key="NeonScrollBarStyle">
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Background" Value="#1A1A1A"/>
+            <Setter Property="Foreground" Value="#00FFFF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid>
+                            <Track Name="PART_Track" IsDirectionReversed="True">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Style="{x:Null}" Height="0"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Background="#00FFFF" BorderBrush="Cyan" BorderThickness="1">
+                                        <Thumb.Effect>
+                                            <DropShadowEffect Color="Cyan" BlurRadius="10" ShadowDepth="0"/>
+                                        </Thumb.Effect>
+                                    </Thumb>
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Style="{x:Null}" Height="0"/>
+                                </Track.IncreaseRepeatButton>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="IconButtonStyle">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                         BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Increase Size on Hover -->
+            <Style.Triggers>
+                <!-- Hover Effect with Glow -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="Cyan" BlurRadius="15" ShadowDepth="0"/>
+                        </Setter.Value>
+                    </Setter>
+                    <!-- Increase Size on Hover -->
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="NeonButtonStyle">
+            <Setter Property="Background" Value="#00FFFF"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="BorderBrush" Value="#00FFFF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Cyan" BlurRadius="10" ShadowDepth="0"/>
+                </Setter.Value>
+            </Setter>
+
+            <!-- Default Transform (so the button can scale on hover) -->
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+
+            <Style.Triggers>
+                <!-- Hover Effect with Glow -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <!-- Increase Size on Hover -->
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <!-- Custom ListView Template with Neon ScrollBar -->
+        <ControlTemplate x:Key="NeonListViewTemplate" TargetType="ListView">
+            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                <ScrollViewer Focusable="False" Padding="{TemplateBinding Padding}" 
+                              HorizontalScrollBarVisibility="Auto" 
+                              VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer.Resources>
+                        <!-- Apply NeonScrollBarStyle to all ScrollBars within this ScrollViewer -->
+                        <Style TargetType="ScrollBar" BasedOn="{StaticResource NeonScrollBarStyle}"/>
+                    </ScrollViewer.Resources>
+                    <ItemsPresenter />
+                </ScrollViewer>
+            </Border>
+        </ControlTemplate>
+
+       
+
+    </Application.Resources>
+</Application>

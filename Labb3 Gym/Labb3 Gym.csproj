@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>Labb3_Gym</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <BaseOutputPath></BaseOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\avbokatidbakgrund.jpg" />
+    <None Remove="Images\Gigachad.jpg" />
+    <None Remove="Images\gigachadette.jpg" />
+    <None Remove="Images\green_dumbell.png" />
+    <None Remove="Images\Hundra_Gymmet_Futuristic_Gym_Background.jpg" />
+    <None Remove="Images\Hundra_Gymmet_Logo_No_Small_Text.jpg" />
+    <None Remove="Images\labb3background.jpg" />
+    <None Remove="Images\red_dumbell.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\avbokatidbakgrund.jpg" />
+    <Resource Include="Images\Gigachad.jpg" />
+    <Resource Include="Images\gigachadette.jpg" />
+    <Resource Include="Images\green_dumbell.png" />
+    <Resource Include="Images\Hundra_Gymmet_Futuristic_Gym_Background.jpg" />
+    <Resource Include="Images\Hundra_Gymmet_Logo_No_Small_Text.jpg" />
+    <Resource Include="Images\labb3background.jpg" />
+    <Resource Include="Images\red_dumbell.png" />
+  </ItemGroup>
+
+</Project>

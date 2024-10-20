@@ -1,0 +1,79 @@
+﻿<Page x:Class="Labb3_Gym.Views.AboutUsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:Labb3_Gym.Views"
+      Title="AboutUsPage">
+    
+
+    <Grid Width="800" Margin="0,20,0,25">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="215"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="pack://application:,,,/Images/GigaChad.jpg"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Width="180" Height="180">
+                <Image.Effect>
+                    <DropShadowEffect Color="Red" BlurRadius="10" ShadowDepth="0"/>
+                </Image.Effect>
+            </Image>
+            <TextBlock Text="Dersim" FontSize="20" FontStyle="Italic" Foreground="FloralWhite" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,5,25,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Image Source="pack://application:,,,/Images/GigaChadette.jpg"
+                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                   Width="180" Height="180">
+                <Image.Effect>
+                    <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
+                </Image.Effect>
+            </Image>
+            <TextBlock Text="David" FontStyle="Italic" FontSize="20" Foreground="FloralWhite" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="25,5,0,0"/>
+        </StackPanel>
+
+        <TextBlock Text="About Us" 
+            Grid.Row="1" Grid.ColumnSpan="2"
+            FontSize="55" FontStyle="Oblique"
+            Foreground="FloralWhite"
+            TextWrapping="Wrap" TextAlignment="Center"
+              
+            VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#80000000" CornerRadius="15" BorderBrush="#00FFFF" BorderThickness="2" Padding="20" Margin="0,0,0,10">
+                <!-- ScrollViewer wrapping the TextBlock to enable scrolling -->
+           
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer.Resources>
+                        <Style TargetType="ScrollBar" BasedOn="{StaticResource NeonScrollBarStyle}"/>
+                    </ScrollViewer.Resources>
+
+                    <TextBlock Text="{Binding AboutUsText}"
+                               FontSize="20"
+                               FontStyle="Italic"
+                               Foreground="White" 
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center"/>
+                </ScrollViewer>
+        </Border>
+        <Button Grid.Row="3" Grid.ColumnSpan="2"
+                Width="150" Height="48" 
+                Background="SpringGreen" Foreground="Black"
+                BorderBrush="Black"
+                Style="{StaticResource NeonButtonStyle}"
+                FontWeight="Bold" Content="JOIN NOW" FontSize="15"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                Margin="0,5,0,0"
+                Click="Join_Click"/>
+    </Grid>
+</Page>
