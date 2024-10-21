@@ -16,7 +16,9 @@ namespace Labb3_Gym.Models
         public string Time { get; set; }
         public int TotalSlots { get; set; } = 5; // Example default max slots
         private int filledSlots { get; set; } // Number of filled slots
-
+        public int SessionId { get; set; } 
+        
+        
         public int FilledSlots
         {
             get => filledSlots;
@@ -33,10 +35,13 @@ namespace Labb3_Gym.Models
 
         }
 
-        public Sessions()
+        public Sessions(ref int IdCounter)
         {
+            SessionId = IdCounter;
 
+            IdCounter++;  
         }
+          
         
         
         

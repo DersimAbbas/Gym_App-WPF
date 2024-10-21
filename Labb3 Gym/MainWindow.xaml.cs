@@ -19,14 +19,14 @@ namespace Labb3_Gym
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Users CurrentUser { get; set; }
+        
         public BookingManager _bookingManager { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            CurrentUser = new Users("Dersim");
-            _bookingManager = new BookingManager(CurrentUser);
+
+            _bookingManager = BookingManager.Instance;
             MainFrame.Navigate(new HomePage(_bookingManager));
         }
         
@@ -37,7 +37,8 @@ namespace Labb3_Gym
 
         private void UserBooking_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new AvbokaTider(_bookingManager));
+           
+            MainFrame.Navigate(new AvbokaTider());
         }
        
     }

@@ -21,11 +21,11 @@ namespace Labb3_Gym.Views
     /// </summary>
     public partial class AvbokaTider : Page
     {
-        public AvbokaTider(BookingManager bookingManager)
+        public AvbokaTider()
         {
             InitializeComponent();
 
-            this.DataContext = new UserBookingsViewModel(bookingManager);
+            this.DataContext = new UserBookingsViewModel();
         }
     }
 }

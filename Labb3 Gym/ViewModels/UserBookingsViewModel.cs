@@ -45,11 +45,11 @@ namespace Labb3_Gym.ViewModels
 
         }
 
-        public UserBookingsViewModel( BookingManager bookingManager)
+        public UserBookingsViewModel()
         {
-            this._bookingManager = bookingManager;
-            this._currentUser = _bookingManager.currentUser;
-            _currentUser.BookedSession = new ObservableCollection<Sessions>();
+            _bookingManager = BookingManager.Instance;
+            _currentUser = _bookingManager.currentUser;
+           
             _sortedbookedSessions = CollectionViewSource.GetDefaultView(_currentUser.BookedSession);
             _sortedbookedSessions.SortDescriptions.Add(new SortDescription("Time", ListSortDirection.Ascending));
         }
@@ -59,10 +59,10 @@ namespace Labb3_Gym.ViewModels
         public void LoadSessions()
         {
           
+            OnPropertyChanged(nameof(Sessions));
 
 
             
-            OnPropertyChanged(nameof(Sessions));
         }
 
 

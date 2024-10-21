@@ -24,15 +24,7 @@ namespace Labb3_Gym.Models
                 OnPropertyChanged(nameof(BookedSession));
             }
         }
-
-        public Users(string name)
-        {
-            Name = name;
-            BookedSession = new ObservableCollection<Sessions>();
-        }
-
     }
-
 
 
     public class ObservableObject : INotifyPropertyChanged

@@ -13,7 +13,7 @@ namespace Labb3_Gym.ViewModels
 {
     public class MainViewModels : INotifyPropertyChanged
     {
-     
+        public BookingManager _bookingManager {  get; set; }
         private string introText;
 
         public string IntroText
@@ -30,6 +30,7 @@ namespace Labb3_Gym.ViewModels
 
         public MainViewModels()
         {
+            _bookingManager = BookingManager.Instance;
             
             IntroText = "Welcome to Hundra Gymmet – Where 100% Effort is the Only Way!\n\n" +
                          "At Hundra Gymmet, we believe in the power of commitment and dedication. " +

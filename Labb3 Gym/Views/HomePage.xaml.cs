@@ -27,19 +27,20 @@ namespace Labb3_Gym.Views
         public HomePage(BookingManager bookingManager)
         {
             InitializeComponent();
+            _bookingManager = BookingManager.Instance;
             this.DataContext = new MainViewModels();
         }
 
         private void JoinUs_Click(object sender, RoutedEventArgs e)
         {
             
-            NavigationService.Navigate(new LedigaPass(_bookingManager));
+            NavigationService.Navigate(new LedigaPass());
         }
    
         private void AboutUs_Click(object sender, RoutedEventArgs e)
         {
             IntroTextBorder.Visibility = Visibility.Collapsed;
-            NavigationService.Navigate(new AboutUsPage(_bookingManager));
+            NavigationService.Navigate(new AboutUsPage());
         }
     }
 }

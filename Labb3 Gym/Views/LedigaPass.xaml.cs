@@ -23,11 +23,12 @@ namespace Labb3_Gym.Views
     /// </summary>
     public partial class LedigaPass : Page
     {
-       
-        public LedigaPass(BookingManager bookingmanager)
+        
+        public LedigaPass()
         {
             InitializeComponent();
-            this.DataContext = new BookingViewModel(bookingmanager);
+                       
+            this.DataContext = new BookingViewModel();
         }
 
        

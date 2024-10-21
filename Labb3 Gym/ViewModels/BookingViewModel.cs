@@ -49,37 +49,24 @@ namespace Labb3_Gym.ViewModels
 
             }
 
-            public BookingViewModel(BookingManager bookingManager)
+            public BookingViewModel()
             {
-                this._bookingManager = bookingManager;
-                this._user = _bookingManager.currentUser;
-                Sessions = new ObservableCollection<Sessions>();
-                LoadSessions();
+                _bookingManager = BookingManager.Instance;
+                _user = _bookingManager.currentUser;
+                Sessions = _bookingManager.AvailableSessions;  // Use the sessions from BookingManager
                 _sortedSessions = CollectionViewSource.GetDefaultView(Sessions);
                 _sortedSessions.SortDescriptions.Add(new SortDescription("Time", ListSortDirection.Ascending));
                 BookCommand = new RelayCommand<Sessions>(BookSession, CanBookSession);
                 CancelCommand = new RelayCommand<Sessions>(CancelSession, CanCancelSession);
             }
+    
             
 
-            public void LoadSessions()
-            {
-                Sessions.Add(new Sessions { SessionType = "Yoga", date = DateTime.Today, Trainer = "Jennie", Time = "12:00", FilledSlots = 3, TotalSlots = 5}); 
-                Sessions.Add(new Sessions { SessionType = "Cardio", date = DateTime.Today, Trainer = "Erik", Time = "12:30",FilledSlots = 1, TotalSlots = 5});
-                Sessions.Add(new Sessions { SessionType = "Cardio", date = DateTime.Today, Trainer = "Erik", Time = "11:30", FilledSlots = 2, TotalSlots = 5});
-                Sessions.Add(new Sessions { SessionType = "PowerLifting", date = DateTime.Today, Trainer = "Chuck Norris", Time = "11:00", FilledSlots = 4, TotalSlots = 5});
-                Sessions.Add(new Sessions { SessionType = "Yoga", date = DateTime.Today, Trainer = "Jennie", Time = "10:30", FilledSlots = 4, TotalSlots = 5 });
-                Sessions.Add(new Sessions { SessionType = "Spinning", date = DateTime.Today, Trainer = "Jessica", Time = "13:30", FilledSlots = 3, TotalSlots = 5 });
-                Sessions.Add(new Sessions { SessionType = "Spinning", date = DateTime.Today, Trainer = "Dersim", Time = "14:30",FilledSlots = 5, TotalSlots = 5 });
-       
-                
-                AddNewSession();
-                OnPropertyChanged(nameof(Sessions));
-            }
+            
 
 
 
-            public void AddNewSession()
+            /*public void AddNewSession()
             {
                 var newSession = new Sessions
                 {
@@ -106,7 +93,7 @@ namespace Labb3_Gym.ViewModels
                 
                 OnPropertyChanged(nameof(Sessions));
                
-            }
+            }*/
 
             private void BookSession(Object parameter)
             {

@@ -22,31 +22,30 @@ namespace Labb3_Gym.Views
     /// </summary>
     public partial class AboutUsPage : Page
     {
-        public BookingManager _bookingManager {  get; set; }
-        public string AboutUsText {  get; set; }
-        
-        public AboutUsPage(BookingManager bookingManager)
-        {
-            
-            InitializeComponent();
-            this.DataContext = new AboutUsViewModel(bookingManager);
-        }
 
-          
+        
+        public AboutUsPage()
+        {
+            InitializeComponent();
+            
+            this.DataContext = new AboutUsViewModel(BookingManager.Instance);
+        }
 
         private void Join_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new LedigaPass(_bookingManager));
+            NavigationService.Navigate(new LedigaPass());
         }
 
-
-
-
-
-
-
-
+          
     }
+
+
+
+
+
+
+
+
  
 
 }
