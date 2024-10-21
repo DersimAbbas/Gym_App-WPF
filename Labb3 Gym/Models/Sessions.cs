@@ -14,12 +14,25 @@ namespace Labb3_Gym.Models
         public string Trainer { get; set; }
         public DateTime date { get; set; }
         public string Time { get; set; }
-        public bool SelectedSession { get; set; }
         public int TotalSlots { get; set; } = 5; // Example default max slots
-        public int FilledSlots { get; set; } // Number of filled slots
-        
-       
-        
+        private int filledSlots { get; set; } // Number of filled slots
+
+        public int FilledSlots
+        {
+            get => filledSlots;
+            set
+            {
+                if (filledSlots != value)
+                {
+                    filledSlots = value;
+                    OnPropertyChanged(nameof(FilledSlots));
+                    OnPropertyChanged(nameof(IsFull));
+                                                           
+                }
+            }
+
+        }
+
         public Sessions()
         {
 

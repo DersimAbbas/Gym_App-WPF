@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Labb3_Gym.Models;
 using Labb3_Gym.ViewModels;
 using Labb3_Gym.Views;
 
@@ -18,17 +19,26 @@ namespace Labb3_Gym
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Users CurrentUser { get; set; }
+        public BookingManager _bookingManager { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new HomePage());
+            CurrentUser = new Users("Dersim");
+            _bookingManager = new BookingManager(CurrentUser);
+            MainFrame.Navigate(new HomePage(_bookingManager));
         }
         
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new HomePage());
+            MainFrame.Navigate(new HomePage(_bookingManager));
         }
 
+        private void UserBooking_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new AvbokaTider(_bookingManager));
+        }
        
     }
     

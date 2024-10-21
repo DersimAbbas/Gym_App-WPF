@@ -15,11 +15,11 @@ namespace Labb3_Gym.ViewModels
    public class AboutUsViewModel : INotifyPropertyChanged
    {
         public string AboutUsText { get; set; }
+        public BookingManager _bookingManager { get; set; }
 
-
-        public AboutUsViewModel()
+        public AboutUsViewModel(BookingManager bookingmanager)
         {
-
+            this._bookingManager = bookingmanager;
             AboutUsText = "At Hundra Gymmet, we believe that success in fitness isn’t about being perfect; " +
                      "it's about giving 100% in every moment. Our gym is more than just a place to work out — " +
                      "it’s a community built around dedication, perseverance, and a relentless pursuit of personal greatness.\n\n" +

@@ -37,7 +37,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,20">
-            <Button Style="{StaticResource NeonButtonStyle}" Width="165" Height="55" Background="OrangeRed" FontSize="20" Content="Your Bookings" Click="Home_Click"/>
+            <Button Style="{StaticResource NeonButtonStyle}" Width="165" Height="55" Background="OrangeRed" FontSize="20" Content="Your Bookings" Click="UserBooking_Click"/>
         </StackPanel>
 
     </Grid>        

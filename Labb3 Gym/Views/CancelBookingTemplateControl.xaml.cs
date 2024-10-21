@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Labb3_Gym
+namespace Labb3_Gym.Views
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for CancelBookingTemplateControl.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class CancelBookingTemplateControl : UserControl
     {
-        public Window1()
+        public CancelBookingTemplateControl()
         {
             InitializeComponent();
         }

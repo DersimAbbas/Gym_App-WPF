@@ -12,20 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Labb3_Gym.ViewModels;
-using Labb3_Gym.Models;
+
 namespace Labb3_Gym.Views
 {
     /// <summary>
-    /// Interaction logic for AvbokaTider.xaml
+    /// Interaction logic for CancelSessionsControl.xaml
     /// </summary>
-    public partial class AvbokaTider : Page
+    public partial class CancelSessionsControl : UserControl
     {
-        public AvbokaTider(BookingManager bookingManager)
+        public CancelSessionsControl()
         {
             InitializeComponent();
-
-            this.DataContext = new UserBookingsViewModel(bookingManager);
         }
     }
 }

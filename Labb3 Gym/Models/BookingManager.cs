@@ -3,33 +3,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Labb3_Gym.ViewModels;
-using Labb3_Gym;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
+using Labb3_Gym.Models;
+using System.Windows.Data;
+using Labb3_Gym.Views;
+using System.Windows;
+using System.Windows.Input;
 
 
 namespace Labb3_Gym.Models
 {
     public class BookingManager 
     {
-        public Sessions session { get; set; }
-        public bool canBook = true;
+        public Users currentUser;
         
-        public BookingManager()
+        public BookingManager(Users user)
         {
-
+            currentUser = new Users("Dersim");
+            currentUser.BookedSession = new ObservableCollection<Sessions>();
         }
 
-
-        /*public void OnSessionBookCommand()
+        public void BookSessions(Sessions session)
         {
-          
-            
-            if (session.SelectedSession == null)
+            if (session!= null & session.FilledSlots <session.TotalSlots)
             {
-                canBook = false;
+                session.FilledSlots++;
+                currentUser.BookedSession.Add(session);
             }
-            else if(session..)
-        }*/
-    
+        }
+
+        public void CancelSessions(Sessions session)
+        {
+            if (session != null & session.FilledSlots > 0)
+            {
+                session.FilledSlots--;
+                currentUser.BookedSession.Remove(session);
+            }
+        }
+
+        public bool CanBookSession(Sessions session)
+        {
+            return session != null && session.FilledSlots <session.TotalSlots;
+        }
+
+        public bool CanCancelSessions(Sessions session)
+        {
+            return session != null && session.FilledSlots > 0;
+        }
+
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Labb3_Gym.Models;
 
 namespace Labb3_Gym.Views
 {
@@ -21,22 +22,24 @@ namespace Labb3_Gym.Views
     /// </summary>
     public partial class HomePage : Page
     {
-        public HomePage()
+        public BookingManager _bookingManager { get; set; }
+
+        public HomePage(BookingManager bookingManager)
         {
             InitializeComponent();
-            this.DataContext = new BookingViewModel();
+            this.DataContext = new MainViewModels();
         }
 
         private void JoinUs_Click(object sender, RoutedEventArgs e)
         {
             
-            NavigationService.Navigate(new LedigaPass());
+            NavigationService.Navigate(new LedigaPass(_bookingManager));
         }
-
+   
         private void AboutUs_Click(object sender, RoutedEventArgs e)
         {
-           IntroTextBorder.Visibility = Visibility.Collapsed;
-            NavigationService.Navigate(new AboutUsPage());
+            IntroTextBorder.Visibility = Visibility.Collapsed;
+            NavigationService.Navigate(new AboutUsPage(_bookingManager));
         }
     }
 }

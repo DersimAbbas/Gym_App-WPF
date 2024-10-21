@@ -25,7 +25,7 @@
                     <DropShadowEffect Color="Red" BlurRadius="10" ShadowDepth="0"/>
                 </Image.Effect>
             </Image>
-            <TextBlock Text="Dersim" FontSize="20" FontStyle="Italic" Foreground="FloralWhite" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,5,25,0"/>
+            <TextBlock Text="David" FontSize="20" FontStyle="Italic" Foreground="FloralWhite" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,5,25,0"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right">
@@ -36,7 +36,7 @@
                     <DropShadowEffect Color="Yellow" BlurRadius="10" ShadowDepth="0"/>
                 </Image.Effect>
             </Image>
-            <TextBlock Text="David" FontStyle="Italic" FontSize="20" Foreground="FloralWhite" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="25,5,0,0"/>
+            <TextBlock Text="Angela" FontStyle="Italic" FontSize="20" Foreground="FloralWhite" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="25,5,0,0"/>
         </StackPanel>
 
         <TextBlock Text="About Us" 

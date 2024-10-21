@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Labb3_Gym.ViewModels;
-using Labb3_Gym;
+using Labb3_Gym.Models;
+
 
 namespace Labb3_Gym.Views
 {
@@ -22,20 +23,13 @@ namespace Labb3_Gym.Views
     /// </summary>
     public partial class LedigaPass : Page
     {
-        public LedigaPass()
+       
+        public LedigaPass(BookingManager bookingmanager)
         {
             InitializeComponent();
-            this.DataContext = new BookingViewModel();
+            this.DataContext = new BookingViewModel(bookingmanager);
         }
 
-        private void Book_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
     }
 }
