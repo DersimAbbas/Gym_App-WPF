@@ -61,12 +61,15 @@ namespace Labb3_Gym.Models
                 {
                     session.FilledSlots++;
                     currentUser.BookedSession.Add(session);
-
+                    MessageBox.Show("Session is now booked.");
                 }               
                
             }
            
         }
+
+      
+
 
         public void CancelSessions(Sessions session)
         {

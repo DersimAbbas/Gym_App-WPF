@@ -58,16 +58,6 @@ namespace Labb3_Gym.ViewModels
 
 
 
-        public void LoadSessions()
-        {
-          
-            OnPropertyChanged(nameof(Sessions));
-
-
-            
-        }
-
-
 
 
         private void CancelBookedSession(Object parameter)
