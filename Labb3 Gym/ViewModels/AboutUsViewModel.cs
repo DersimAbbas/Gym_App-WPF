@@ -40,15 +40,6 @@ namespace Labb3_Gym.ViewModels
         }
 
 
-
-
-
-
-
-
-
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
@@ -63,3 +54,12 @@ namespace Labb3_Gym.ViewModels
 
    }
 }
+
+
+
+
+
+
+
+
+

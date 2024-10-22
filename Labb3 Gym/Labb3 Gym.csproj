@@ -11,7 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\avbokatidbakgrund.jpg" />
     <None Remove="Images\Gigachad.jpg" />
     <None Remove="Images\gigachadette.jpg" />
     <None Remove="Images\green_dumbell.png" />
@@ -22,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\avbokatidbakgrund.jpg" />
     <Resource Include="Images\Gigachad.jpg" />
     <Resource Include="Images\gigachadette.jpg" />
     <Resource Include="Images\green_dumbell.png" />

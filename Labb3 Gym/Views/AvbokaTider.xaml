@@ -21,7 +21,7 @@
         <!-- StackPanel for the Booking and Canceling Buttons -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
            
-            <Button Style="{StaticResource IconButtonStyle}" Width="100" Height="100" Background="Transparent" BorderBrush="Transparent" Command="{Binding CancelCommand}">
+            <Button Style="{StaticResource IconButtonStyle}" Width="100" Height="100" Background="Transparent" BorderBrush="Transparent" Command="{Binding CancelBookedCommand}">
                 <Image Source="pack://application:,,,/Images/red_dumbell.png" Width="100" Height="150"/>
             </Button>
         </StackPanel>

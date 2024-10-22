@@ -16,7 +16,7 @@ namespace Labb3_Gym.Models
         public string Time { get; set; }
         public int TotalSlots { get; set; } = 5; // Example default max slots
         private int filledSlots { get; set; } // Number of filled slots
-        public int SessionId { get; set; } 
+        public Guid SessionId { get; set; } 
         
         
         public int FilledSlots
@@ -35,17 +35,11 @@ namespace Labb3_Gym.Models
 
         }
 
-        public Sessions(ref int IdCounter)
+        public Sessions()
         {
-            SessionId = IdCounter;
-
-            IdCounter++;  
+            SessionId = Guid.NewGuid();
         }
-          
-        
-        
-        
-        
+
         
         public bool IsFull => FilledSlots >= TotalSlots;
 
@@ -59,6 +53,12 @@ namespace Labb3_Gym.Models
 
 
 
-
     }
 }
+
+            
+          
+        
+        
+        
+        

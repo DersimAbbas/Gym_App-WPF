@@ -66,37 +66,12 @@ namespace Labb3_Gym.ViewModels
 
 
 
-            /*public void AddNewSession()
-            {
-                var newSession = new Sessions
-                {
-                    SessionType = "Pilates",
-                    Trainer = "Anna",
-                    date = DateTime.Today,
-                    Time = "14:00",
-                    FilledSlots = 2, // Full session
-                    TotalSlots = 5
-                };
-
-                var newSession1 = new Sessions
-                {
-                    SessionType = "Pilates",
-                    Trainer = "Dersim",
-                    date = DateTime.Today,
-                    Time = "15:00",
-                    FilledSlots = 3, // Full session
-                    TotalSlots = 5
-                };
-
-                Sessions.Add(newSession);
-                Sessions.Add(newSession1);
-                
-                OnPropertyChanged(nameof(Sessions));
-               
-            }*/
+          
 
             private void BookSession(Object parameter)
             {
+                
+            
                 _bookingManager.BookSessions(SelectedSession);
                 OnPropertyChanged(nameof(SelectedSession));
                 _sortedSessions.Refresh();

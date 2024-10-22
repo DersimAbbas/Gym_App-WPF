@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -19,7 +20,7 @@ namespace Labb3_Gym.ViewModels
         public ICollectionView SortedBookedSessions => _sortedbookedSessions;
         private Sessions _selectedSession;
         private Users _currentUser;
-        public ICommand CancelCommand { get; }
+        public ICommand CancelBookedCommand { get; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Sessions SelectedBookedSession
@@ -52,6 +53,7 @@ namespace Labb3_Gym.ViewModels
            
             _sortedbookedSessions = CollectionViewSource.GetDefaultView(_currentUser.BookedSession);
             _sortedbookedSessions.SortDescriptions.Add(new SortDescription("Time", ListSortDirection.Ascending));
+            CancelBookedCommand = new RelayCommand<Sessions>(CancelBookedSession, CanCancelBookedSession);
         }
 
 
@@ -71,11 +73,13 @@ namespace Labb3_Gym.ViewModels
         private void CancelBookedSession(Object parameter)
         {
 
-            if (SelectedBookedSession != null && _currentUser._bookedSession.Count >= 0)
+            if (SelectedBookedSession != null && _currentUser._bookedSession.Count > 0)
             {
+                
                 _bookingManager.CancelSessions(SelectedBookedSession);
                 OnPropertyChanged(nameof(SelectedBookedSession)); // Notify the ListView to refresh
                 OnPropertyChanged(nameof(_currentUser.BookedSession));
+                
             }
         }
 
@@ -89,7 +93,11 @@ namespace Labb3_Gym.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-   }
+
+
+        
+
+    }
 }
 
     

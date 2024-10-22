@@ -35,16 +35,16 @@ namespace Labb3_Gym.Models
 
         private void LoadSessions()
         {
-            AvailableSessions.Add(new Sessions(ref IdCounter) { SessionType = "Yoga", date = DateTime.Today, Trainer = "Jennie", Time = "12:00", FilledSlots = 3, TotalSlots = 5 });
-            AvailableSessions.Add(new Sessions(ref IdCounter) { SessionType = "Cardio", date = DateTime.Today, Trainer = "Erik", Time = "12:30", FilledSlots = 1, TotalSlots = 5 });
-            AvailableSessions.Add(new Sessions(ref IdCounter) { SessionType = "Cardio", date = DateTime.Today, Trainer = "Erik", Time = "11:30", FilledSlots = 2, TotalSlots = 5 });
-            AvailableSessions.Add(new Sessions(ref IdCounter) { SessionType = "PowerLifting", date = DateTime.Today, Trainer = "Chuck Norris", Time = "11:00", FilledSlots = 4, TotalSlots = 5 });
-            AvailableSessions.Add(new Sessions(ref IdCounter) { SessionType = "Yoga", date = DateTime.Today, Trainer = "Jennie", Time = "10:30", FilledSlots = 4, TotalSlots = 5 });
-            AvailableSessions.Add(new Sessions(ref IdCounter) { SessionType = "Spinning", date = DateTime.Today, Trainer = "Jessica", Time = "13:30", FilledSlots = 3, TotalSlots = 5 });
-            AvailableSessions.Add(new Sessions(ref IdCounter) { SessionType = "Spinning", date = DateTime.Today, Trainer = "Dersim", Time = "14:30", FilledSlots = 5, TotalSlots = 5 });
+            AvailableSessions.Add(new Sessions {SessionType = "Yoga", date = DateTime.Today, Trainer = "Jennie", Time = "12:00", FilledSlots = 3, TotalSlots = 5 });
+            AvailableSessions.Add(new Sessions { SessionType = "Cardio", date = DateTime.Today, Trainer = "Erik", Time = "12:30", FilledSlots = 1, TotalSlots = 5 });
+            AvailableSessions.Add(new Sessions { SessionType = "Cardio", date = DateTime.Today, Trainer = "Erik", Time = "11:30", FilledSlots = 2, TotalSlots = 5 });
+            AvailableSessions.Add(new Sessions { SessionType = "PowerLifting", date = DateTime.Today, Trainer = "Chuck Norris", Time = "11:00", FilledSlots = 4, TotalSlots = 5 });
+            AvailableSessions.Add(new Sessions { SessionType = "Yoga", date = DateTime.Today, Trainer = "Jennie", Time = "10:30", FilledSlots = 4, TotalSlots = 5 });
+            AvailableSessions.Add(new Sessions { SessionType = "Spinning", date = DateTime.Today, Trainer = "Jessica", Time = "13:30", FilledSlots = 3, TotalSlots = 5 });
+            AvailableSessions.Add(new Sessions { SessionType = "Spinning", date = DateTime.Today, Trainer = "Dersim", Time = "14:30", FilledSlots = 5, TotalSlots = 5 });
+        }
 
         
-        }
 
 
 
@@ -52,10 +52,17 @@ namespace Labb3_Gym.Models
         {
             if (session!= null & session.FilledSlots <session.TotalSlots)
             {
-                //if(sessionId == CurrentUser.BookedSession.Any/firstordefault(SessionId => N(
-               
-                session.FilledSlots++;
-                currentUser.BookedSession.Add(session);
+                if(currentUser._bookedSession.Any(s=>s.SessionId == session.SessionId))
+                {
+                    MessageBox.Show("you have already booked this session.");
+                    
+                }
+                else
+                {
+                    session.FilledSlots++;
+                    currentUser.BookedSession.Add(session);
+
+                }               
                
             }
            
@@ -63,11 +70,16 @@ namespace Labb3_Gym.Models
 
         public void CancelSessions(Sessions session)
         {
-            if (session != null & session.FilledSlots > 0)
+            if (session != null & session.FilledSlots > 0 & currentUser.BookedSession.Any(s => s.SessionId == session.SessionId))
             {
                 session.FilledSlots--;
                 currentUser.BookedSession.Remove(session);
+                MessageBox.Show("Cancelled your booking for session.");
             }
+            else
+            {
+                MessageBox.Show("You cannot unbook a session you havent booked before.");
+            }   
         }
 
         public bool CanBookSession(Sessions session)
