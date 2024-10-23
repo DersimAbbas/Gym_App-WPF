@@ -94,7 +94,7 @@ namespace Labb3_Gym.ViewModels
                 OnPropertyChanged(nameof(FilteredSessions));
             }
             
-            
+            // updates data for views from bookingmanager model method booksession
             private void UpdateDataBookSession(Object parameter)
             {
                 
@@ -102,7 +102,7 @@ namespace Labb3_Gym.ViewModels
                 _bookingManager.BookSessions(SelectedSession);
                 OnPropertyChanged(nameof(SelectedSession));
             }
-                
+               
             private bool UpdateDataCanBookSession(object parameter)
             {
                 return _bookingManager.CanBookSession(SelectedSession);
