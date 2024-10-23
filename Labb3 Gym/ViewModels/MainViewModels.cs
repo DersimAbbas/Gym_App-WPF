@@ -26,8 +26,6 @@ namespace Labb3_Gym.ViewModels
             }
         }
         
-
-
         public MainViewModels()
         {
             _bookingManager = BookingManager.Instance;
@@ -45,23 +43,16 @@ namespace Labb3_Gym.ViewModels
                            "Because here, it’s 100% or nothing. Join us and discover what you’re truly capable of!";
         }
 
- 
-        
-    
-
-
-
-       
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
-
-    
     
     }
 }
+
+
+
+    

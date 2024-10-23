@@ -44,10 +44,6 @@ namespace Labb3_Gym.Models
             AvailableSessions.Add(new Sessions { SessionType = "Spinning", date = DateTime.Today, Trainer = "Dersim", Time = "14:30", FilledSlots = 5, TotalSlots = 5 });
         }
 
-        
-
-
-
         public void BookSessions(Sessions session)
         {
             if (session!= null & session.FilledSlots <session.TotalSlots)
@@ -67,9 +63,6 @@ namespace Labb3_Gym.Models
             }
            
         }
-
-      
-
 
         public void CancelSessions(Sessions session)
         {
@@ -96,8 +89,8 @@ namespace Labb3_Gym.Models
         }
 
 
-        
-
-
     }
 }
+
+
+        

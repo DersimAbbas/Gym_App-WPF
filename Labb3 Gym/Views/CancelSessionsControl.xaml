@@ -62,7 +62,7 @@
                        BorderThickness="1"
                        Height="275"
                        Template="{StaticResource NeonListViewTemplate}"
-                       ItemsSource="{Binding SortedBookedSessions}"
+                       ItemsSource="{Binding FilteredBookedSessions}"
                        SelectedItem="{Binding SelectedBookedSession}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
@@ -86,15 +86,19 @@
                 <!-- Search bar below the ListView -->
                 <Grid Width="200" Height="35" Margin="0,7,0,0" HorizontalAlignment="Center">
                     <TextBox x:Name="SearchTextBox"
-                          VerticalContentAlignment="Center"
-                          FontSize="16"
-                          Foreground="White"
-                          Background="Transparent"
-                          BorderBrush="#00FFFF"
-                          Style="{StaticResource RoundedTextBoxStyle}"
-                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Text="Search sessions..."
-                            FontSize="16"
+                       VerticalContentAlignment="Center"
+                       FontSize="18"
+                       Foreground="White"
+                       Background="Transparent"
+                       BorderBrush="#00FFFF"
+                       Style="{StaticResource RoundedTextBoxStyle}"
+                       Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding SearchBookedCommand}"/>
+                        </TextBox.InputBindings>
+                    </TextBox>
+                    <TextBlock Text="Press Enter to search..."
+                            FontSize="18"
                             Foreground="Gray"
                             VerticalAlignment="Center"
                             IsHitTestVisible="False"

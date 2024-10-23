@@ -40,7 +40,6 @@ namespace Labb3_Gym.Models
             SessionId = Guid.NewGuid();
         }
 
-        
         public bool IsFull => FilledSlots >= TotalSlots;
 
 
@@ -51,10 +50,10 @@ namespace Labb3_Gym.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
-
     }
 }
+
+
 
             
           

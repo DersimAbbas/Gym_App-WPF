@@ -26,7 +26,6 @@ namespace Labb3_Gym.Models
         }
     }
 
-
     public class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;

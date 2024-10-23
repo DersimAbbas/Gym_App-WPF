@@ -17,9 +17,6 @@ namespace Labb3_Gym.ViewModels
       {
             public Users _user { get; set; }
             public BookingManager _bookingManager { get; set; }
-            private string sessionName;
-            private ICollectionView _sortedSessions;
-            public ICollectionView SortedSessions => _sortedSessions;
             public ObservableCollection<Sessions> Sessions { get; set; }
             private Sessions _selectedSession;
             public ICommand BookCommand { get; }
@@ -29,7 +26,6 @@ namespace Labb3_Gym.ViewModels
             public event PropertyChangedEventHandler PropertyChanged;
             private string _searchQuery;
             
-
             public string SearchQuery
             {
                 get => _searchQuery;
@@ -41,7 +37,6 @@ namespace Labb3_Gym.ViewModels
                 }
             }    
             
-
             public Sessions SelectedSession
             {
                 get => _selectedSession;
@@ -50,19 +45,6 @@ namespace Labb3_Gym.ViewModels
                     _selectedSession = value;
                     OnPropertyChanged(nameof(SelectedSession));
                 }
-            }
-
-
-            public string SessionName
-            {
-                get => sessionName;
-                set
-                {
-                    sessionName = value;
-                    OnPropertyChanged(sessionName);
-
-                }
-
             }
 
             public ObservableCollection<Sessions> FilteredSessions
@@ -80,14 +62,11 @@ namespace Labb3_Gym.ViewModels
                 _bookingManager = BookingManager.Instance;
                 _user = _bookingManager.currentUser;
                 Sessions = _bookingManager.AvailableSessions;  // Use the sessions from BookingManager
-                //_sortedSessions = CollectionViewSource.GetDefaultView(Sessions);
-                //_sortedSessions.SortDescriptions.Add(new SortDescription("Time", ListSortDirection.Ascending));
                 BookCommand = new RelayCommand<Sessions>(BookSession, CanBookSession);
                 CancelCommand = new RelayCommand<Sessions>(CancelSession, CanCancelSession);
                 SearchCommand = new RelayCommand<Sessions>(SearchSession);
                 FilteredSessions = new ObservableCollection<Sessions>(Sessions);
             }
-            
             
             public void SearchSession(object parameter)
             {
@@ -98,21 +77,21 @@ namespace Labb3_Gym.ViewModels
                 }
                 else
                 {
-                    var filtered = Sessions.Where(s => s.SessionType.ToLower().Contains(SearchQuery.ToLower())).ToList();
+                    var filtered = Sessions.Where(s =>
+                    s.SessionType.ToLower().Contains(SearchQuery.ToLower()) || // filter by session type "cardio/yoga"
+                    s.Time.Contains(SearchQuery) || s.date.ToString("yyyy-MM-dd").Contains(SearchQuery.ToLower()) || // filter by time HH-mm and year/mont/date
+                    s.Trainer.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)).ToList(); // filter by trainer name
+                    
                     FilteredSessions.Clear();
                     foreach (var session in filtered)
                     {
                         FilteredSessions.Add(session);
                     }
                 }
-
+                
                 OnPropertyChanged(nameof(FilteredSessions));
             }
-                   
-           
-      
-   
-
+                  
             private void BookSession(Object parameter)
             {
                 
@@ -121,8 +100,6 @@ namespace Labb3_Gym.ViewModels
                 OnPropertyChanged(nameof(SelectedSession));
             }
                 
-                
-
             private bool CanBookSession(object parameter)
             {
                 return _bookingManager.CanBookSession(SelectedSession);
@@ -139,7 +116,6 @@ namespace Labb3_Gym.ViewModels
                 }
             }
 
-            
             private bool CanCancelSession(object parameter)
             {
                 return SelectedSession != null && SelectedSession.FilledSlots > 0;

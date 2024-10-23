@@ -39,7 +39,6 @@ namespace Labb3_Gym.ViewModels
                     "Join us and discover what you’re capable of. Because at Hundra Gymmet, it’s always 100% or nothing.";
         }
 
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
@@ -47,13 +46,13 @@ namespace Labb3_Gym.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
-
-
-
-
    }
 }
+
+
+
+
+
 
 
 

@@ -14,14 +14,36 @@ namespace Labb3_Gym.ViewModels
 {
    public class UserBookingsViewModel : INotifyPropertyChanged
    {
-        private string sessionName;
+      
         private  BookingManager _bookingManager;
-        private ICollectionView _sortedbookedSessions;
-        public ICollectionView SortedBookedSessions => _sortedbookedSessions;
         private Sessions _selectedSession;
         private Users _currentUser;
         public ICommand CancelBookedCommand { get; }
+        public ICommand SearchBookedCommand { get; }
         public event PropertyChangedEventHandler PropertyChanged;
+        private string _searchQuery;
+        private ObservableCollection<Sessions> filteredBookedSessions { get; set; }
+
+        public string SearchQuery
+        {
+            get => _searchQuery;
+            set
+            {
+                _searchQuery = value;
+                OnPropertyChanged(nameof(SearchQuery));
+
+            }
+        }
+
+        public ObservableCollection<Sessions> FilteredBookedSessions
+        {
+            get => filteredBookedSessions;
+            set
+            {
+                filteredBookedSessions = value;
+                OnPropertyChanged(nameof(FilteredBookedSessions));
+            }
+        }
 
         public Sessions SelectedBookedSession
         {
@@ -33,32 +55,38 @@ namespace Labb3_Gym.ViewModels
             }
         }
 
-
-        public string SessionName
-        {
-            get => sessionName;
-            set
-            {
-                sessionName = value;
-                OnPropertyChanged(sessionName);
-
-            }
-
-        }
-
         public UserBookingsViewModel()
         {
             _bookingManager = BookingManager.Instance;
             _currentUser = _bookingManager.currentUser;
-           
-            _sortedbookedSessions = CollectionViewSource.GetDefaultView(_currentUser.BookedSession);
-            _sortedbookedSessions.SortDescriptions.Add(new SortDescription("Time", ListSortDirection.Ascending));
+            SearchBookedCommand = new RelayCommand<Sessions>(SearchBookedSession);
             CancelBookedCommand = new RelayCommand<Sessions>(CancelBookedSession, CanCancelBookedSession);
+            FilteredBookedSessions = new ObservableCollection<Sessions>(_currentUser.BookedSession);
         }
 
+        public void SearchBookedSession(object parameter)
+        {
+            if (string.IsNullOrWhiteSpace(SearchQuery))
+            {
+                FilteredBookedSessions = new ObservableCollection<Sessions>(_currentUser.BookedSession);
 
+            }
+            else
+            {
+                var filtered = _bookingManager.currentUser.BookedSession.Where(s =>
+                s.SessionType.ToLower().Contains(SearchQuery.ToLower()) || // filter by session type "cardio/yoga"
+                s.Time.Contains(SearchQuery) || s.date.ToString("yyyy-MM-dd").Contains(SearchQuery.ToLower()) || // filter by time HH-mm and year/mont/date
+                s.Trainer.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)).ToList(); // filter by trainer name
 
+                FilteredBookedSessions.Clear();
+                foreach (var Bookedsession in filtered)
+                {
+                    FilteredBookedSessions.Add(Bookedsession);
+                }
+            }
 
+            OnPropertyChanged(nameof(FilteredBookedSessions));
+        }
 
         private void CancelBookedSession(Object parameter)
         {
@@ -73,7 +101,6 @@ namespace Labb3_Gym.ViewModels
             }
         }
 
-
         private bool CanCancelBookedSession(object parameter)
         {
             return SelectedBookedSession != null && SelectedBookedSession.FilledSlots > 0;
@@ -83,12 +110,12 @@ namespace Labb3_Gym.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+   }
+}
 
 
         
 
-    }
-}
 
     
    
