@@ -11,6 +11,7 @@ using Labb3_Gym;
 
 namespace Labb3_Gym.ViewModels
 {
+    // short viewmodel to homepage intro text.
     public class MainViewModels : INotifyPropertyChanged
     {
         public BookingManager _bookingManager {  get; set; }

@@ -10,6 +10,7 @@ using Labb3_Gym;
 
 namespace Labb3_Gym.Models
 {
+   //  A class to convert in UI the little green circle to red when session slots are full.
     public class BoolToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

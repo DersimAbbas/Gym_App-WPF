@@ -8,6 +8,7 @@ using System.Windows.Input;
 
 namespace Labb3_Gym.ViewModels
 {
+    // command class to create new command for methods book/cancel/ search
     public class RelayCommand<T> : ICommand
     {
         private Action<object> _execute;

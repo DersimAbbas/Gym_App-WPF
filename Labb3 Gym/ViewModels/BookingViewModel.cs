@@ -13,6 +13,7 @@ using System.Windows.Input;
 
 namespace Labb3_Gym.ViewModels
 {
+      // core data is handled here 
       public class BookingViewModel : INotifyPropertyChanged
       {
             public Users _user { get; set; }
@@ -46,7 +47,7 @@ namespace Labb3_Gym.ViewModels
                     OnPropertyChanged(nameof(SelectedSession));
                 }
             }
-
+            // collection for method searchbar
             public ObservableCollection<Sessions> FilteredSessions
             {
                 get => filteredSessions;
@@ -62,12 +63,13 @@ namespace Labb3_Gym.ViewModels
                 _bookingManager = BookingManager.Instance;
                 _user = _bookingManager.currentUser;
                 Sessions = _bookingManager.AvailableSessions;  // Use the sessions from BookingManager
-                BookCommand = new RelayCommand<Sessions>(BookSession, CanBookSession);
-                CancelCommand = new RelayCommand<Sessions>(CancelSession, CanCancelSession);
+                BookCommand = new RelayCommand<Sessions>(UpdateDataBookSession, UpdateDataCanBookSession);
+                CancelCommand = new RelayCommand<Sessions>(UpdateDataCancelSession, UpdateDataCanCancelSession);
                 SearchCommand = new RelayCommand<Sessions>(SearchSession);
                 FilteredSessions = new ObservableCollection<Sessions>(Sessions);
             }
             
+            //method to be able to search in textbox in bookingpage using LINQ query
             public void SearchSession(object parameter)
             {
                 if (string.IsNullOrWhiteSpace(SearchQuery))
@@ -91,8 +93,9 @@ namespace Labb3_Gym.ViewModels
                 
                 OnPropertyChanged(nameof(FilteredSessions));
             }
-                  
-            private void BookSession(Object parameter)
+            
+            
+            private void UpdateDataBookSession(Object parameter)
             {
                 
             
@@ -100,12 +103,12 @@ namespace Labb3_Gym.ViewModels
                 OnPropertyChanged(nameof(SelectedSession));
             }
                 
-            private bool CanBookSession(object parameter)
+            private bool UpdateDataCanBookSession(object parameter)
             {
                 return _bookingManager.CanBookSession(SelectedSession);
             }
 
-            private void CancelSession(Object parameter)
+            private void UpdateDataCancelSession(Object parameter)
             {
                 
                 if (SelectedSession != null && SelectedSession.FilledSlots > 0)
@@ -116,7 +119,7 @@ namespace Labb3_Gym.ViewModels
                 }
             }
 
-            private bool CanCancelSession(object parameter)
+            private bool UpdateDataCanCancelSession(object parameter)
             {
                 return SelectedSession != null && SelectedSession.FilledSlots > 0;
             }

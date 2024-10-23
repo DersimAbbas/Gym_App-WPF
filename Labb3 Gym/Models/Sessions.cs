@@ -8,6 +8,7 @@ using Labb3_Gym.ViewModels;
 
 namespace Labb3_Gym.Models
 {
+    
     public class Sessions : INotifyPropertyChanged
     {
         public string SessionType { get; set; }

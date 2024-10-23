@@ -12,6 +12,7 @@ using Labb3_Gym;
 
 namespace Labb3_Gym.ViewModels
 {
+   // short viewmodel to bind aboutustext in XAML
    public class AboutUsViewModel : INotifyPropertyChanged
    {
         public string AboutUsText { get; set; }

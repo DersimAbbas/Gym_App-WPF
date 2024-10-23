@@ -12,9 +12,9 @@ using System.Windows.Input;
 
 namespace Labb3_Gym.ViewModels
 {
+   // viewmodel for checking UsersBookings page all methods and logic is derived from bookingviewmodel, except that I adjusted it accordingly to userbooking page
    public class UserBookingsViewModel : INotifyPropertyChanged
    {
-      
         private  BookingManager _bookingManager;
         private Sessions _selectedSession;
         private Users _currentUser;
@@ -23,7 +23,7 @@ namespace Labb3_Gym.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         private string _searchQuery;
         private ObservableCollection<Sessions> filteredBookedSessions { get; set; }
-
+            
         public string SearchQuery
         {
             get => _searchQuery;

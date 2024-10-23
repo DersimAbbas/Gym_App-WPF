@@ -43,7 +43,7 @@ namespace Labb3_Gym.Models
             AvailableSessions.Add(new Sessions { SessionType = "Spinning", date = DateTime.Today, Trainer = "Jessica", Time = "13:30", FilledSlots = 3, TotalSlots = 5 });
             AvailableSessions.Add(new Sessions { SessionType = "Spinning", date = DateTime.Today, Trainer = "Dersim", Time = "14:30", FilledSlots = 5, TotalSlots = 5 });
         }
-
+        // method to manage bookings and not book multiple sessions.
         public void BookSessions(Sessions session)
         {
             if (session!= null & session.FilledSlots <session.TotalSlots)
@@ -63,7 +63,7 @@ namespace Labb3_Gym.Models
             }
            
         }
-
+        //method to cancel or unbook session
         public void CancelSessions(Sessions session)
         {
             if (session != null & session.FilledSlots > 0 & currentUser.BookedSession.Any(s => s.SessionId == session.SessionId))
@@ -77,7 +77,7 @@ namespace Labb3_Gym.Models
                 MessageBox.Show("You cannot unbook a session you havent booked before.");
             }   
         }
-
+        // checks if session is availble to book, based on if its not full or if it exists.
         public bool CanBookSession(Sessions session)
         {
             return session != null && session.FilledSlots <session.TotalSlots;
