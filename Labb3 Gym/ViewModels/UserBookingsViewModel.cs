@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace Labb3_Gym.ViewModels
 {
-   // viewmodel for checking UsersBookings page all methods and logic is derived from bookingviewmodel, except that I adjusted it accordingly to userbooking page
+   // viewmodel for checking UsersBookings page all methods and logic is inherited from bookingviewmodel, except that I adjusted it accordingly to userbooking page
    public class UserBookingsViewModel : INotifyPropertyChanged
    {
         private  BookingManager _bookingManager;
@@ -59,9 +59,9 @@ namespace Labb3_Gym.ViewModels
         {
             _bookingManager = BookingManager.Instance;
             _currentUser = _bookingManager.currentUser;
-            SearchBookedCommand = new RelayCommand<Sessions>(SearchBookedSession);
             CancelBookedCommand = new RelayCommand<Sessions>(CancelBookedSession, CanCancelBookedSession);
-            FilteredBookedSessions = new ObservableCollection<Sessions>(_currentUser.BookedSession);
+            FilteredBookedSessions = new ObservableCollection<Sessions>(_bookingManager.currentUser.BookedSession);
+            SearchBookedCommand = new RelayCommand<Sessions>(SearchBookedSession);
         }
 
         public void SearchBookedSession(object parameter)
@@ -73,12 +73,12 @@ namespace Labb3_Gym.ViewModels
             }
             else
             {
-                var filtered = _bookingManager.currentUser.BookedSession.Where(s =>
+                var filtered = _currentUser.BookedSession.Where(s =>
                 s.SessionType.ToLower().Contains(SearchQuery.ToLower()) || // filter by session type "cardio/yoga"
                 s.Time.Contains(SearchQuery) || s.date.ToString("yyyy-MM-dd").Contains(SearchQuery.ToLower()) || // filter by time HH-mm and year/mont/date
                 s.Trainer.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)).ToList(); // filter by trainer name
-
                 FilteredBookedSessions.Clear();
+
                 foreach (var Bookedsession in filtered)
                 {
                     FilteredBookedSessions.Add(Bookedsession);
@@ -91,16 +91,19 @@ namespace Labb3_Gym.ViewModels
         private void CancelBookedSession(Object parameter)
         {
 
-            if (SelectedBookedSession != null && _currentUser._bookedSession.Count > 0)
+            if (SelectedBookedSession != null && _currentUser.BookedSession.Count > 0)
             {
-                
+                // Call BookingManager's method to cancel the session
                 _bookingManager.CancelSessions(SelectedBookedSession);
-                OnPropertyChanged(nameof(SelectedBookedSession)); // Notify the ListView to refresh
-                OnPropertyChanged(nameof(_currentUser.BookedSession));
-                
+                // Remove the session from the user's booked sessions
+                _currentUser.BookedSession.Remove(SelectedBookedSession);
+                // Also remove the session from the FilteredBookedSessions collection
+                FilteredBookedSessions.Remove(SelectedBookedSession);
+                // Notify the UI that the FilteredBookedSessions collection has changed
+                OnPropertyChanged(nameof(FilteredBookedSessions));
+                OnPropertyChanged(nameof(SelectedBookedSession));
             }
         }
-
         private bool CanCancelBookedSession(object parameter)
         {
             return SelectedBookedSession != null && SelectedBookedSession.FilledSlots > 0;
@@ -112,6 +115,8 @@ namespace Labb3_Gym.ViewModels
         }
    }
 }
+
+
 
 
         

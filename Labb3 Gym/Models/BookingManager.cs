@@ -20,7 +20,6 @@ namespace Labb3_Gym.Models
         public static BookingManager Instance => _instance ??= new BookingManager();
         public Users currentUser { get; set; }
         public ObservableCollection<Sessions> AvailableSessions { get; set; }
-        public int IdCounter = 1;
 
         public BookingManager()
         {
