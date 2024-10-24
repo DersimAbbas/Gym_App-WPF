@@ -38,7 +38,7 @@ Applikationen kan expanderas med mer data i framtiden med hjälp av DataBaser.
 - Arkitekturen kring projektet stödjer att gå ifrån fil baserat lagring av data till data bas utan att behöva ändra mycket i projektet.
 - Det tillåter att appen att utökas med fler användare och mer data.
 
-## HändelseStyrd Programmering
+## Händelsestyrd Programmering
 Applikationen förlitar sig mycket på Händelsestyrd kodning.
 - CommandBindings: Användar Interkationer såsom boka/avboka/filtrera pass är hanterad genom Kommandon (ICommand) i XAML vilket är bunden till UI.
 - Ett exempel : CancelBookedCommand triggar händelse då passet blir avbokat från både listan i backended och UI som vi ser i views.
