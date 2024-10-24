@@ -20,7 +20,7 @@ Projektet som jag har byggt är struktuerad runt MVVM arkitektur. vilket separer
 
 **ViewModels** 
 - Agerar mellan Models och Views.
-- Hanterar appens logik och properties/metoder för interaktioner med UI. Tex: UserBookingViewModel och BookingViewModel hanterar logiken för visning av filtering i sökfunktionen i searchbah, bokning, och avbokning.
+- Hanterar appens logik och properties/metoder för interaktioner med UI. Tex: UserBookingViewModel och BookingViewModel hanterar logiken för visning av filtering i sökfunktionen i searchbar, bokning, och avbokning.
 - Implementationen av INotifyPropertyChanged gör så att UI blir notifierad av ändring i datan och säkerställer live uppdatering.
 
 **Views**
